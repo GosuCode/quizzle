@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:quizzle/models/question_model.dart';
+import 'package:quizzle/widgets/question_widget.dart';
 
 const Color correct = Colors.green;
 const Color incorrect = Colors.red;
@@ -25,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }),
     Question(
         id: '2',
-        question: "How to create a new flutter project ?",
+        question: "How to create a new flutter project?",
         options: {
           'create react app': false,
           'ask adarsh': true,
@@ -41,6 +42,20 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: background,
       appBar: AppBar(
         title: const Text("Burning Question"),
+      ),
+      body: Container(
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Column(
+            children: [
+              QuestionWidget(
+                  index: index,
+                  question: _questions[index].question,
+                  totalQuestion: _questions.length)
+            ],
+          ),
+        ),
       ),
     );
   }
