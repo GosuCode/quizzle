@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:quizzle/models/question_model.dart';
+import 'package:quizzle/widgets/next_button.dart';
 import 'package:quizzle/widgets/question_widget.dart';
 
 const Color correct = Colors.green;
@@ -36,6 +36,17 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   int index = 0;
+
+  void nextQuestion() {
+    if (index == _questions.length - 1) {
+      return;
+    } else {
+      setState(() {
+        index++;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +68,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        child: NextButton(
+          nextQuestion: nextQuestion,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
